@@ -51,6 +51,7 @@ static int asn1c_recurse(arg_t *arg, asn1p_expr_t *expr, int (*callback)(arg_t *
 static asn1p_expr_type_e expr_get_type(arg_t *arg, asn1p_expr_t *expr);
 static int try_inline_default(arg_t *arg, asn1p_expr_t *expr, int out);
 static int *compute_canonical_members_order(arg_t *arg, int el_count);
+static int  base_type(asn1p_expr_t *expr);
 
 enum tvm_compat {
 	_TVM_SAME	= 0,	/* tags and all_tags are same */
@@ -2406,6 +2407,7 @@ emit_type_DEF(arg_t *arg, asn1p_expr_t *expr, enum tvm_compat tv_mode, int tags_
 	asn1p_expr_t *terminal;
 	int using_type_name = 0;
 	char *p = MKID(expr);
+	int   bt;
 
 	terminal = asn1f_find_terminal_type_ex(arg->asn, expr);
 
@@ -2535,12 +2537,38 @@ emit_type_DEF(arg_t *arg, asn1p_expr_t *expr, enum tvm_compat tv_mode, int tags_
 
 		switch(spec) {
 		case ETD_NO_SPECIFICS:
-			OUT("0\t/* No specifics */\n");
+			OUT("0,\t/* No specifics */\n");
 			break;
 		case ETD_HAS_SPECIFICS:
-			OUT("&asn_SPC_%s_specs_%d\t/* Additional specs */\n",
+			OUT("&asn_SPC_%s_specs_%d,\t/* Additional specs */\n",
 				p, expr->_type_unique_index);
 		}
+
+		/*
+		 * Topmost parent
+		 */
+		bt = base_type(expr);
+		if (bt == -1) {
+				OUT("#error Can't find top expression for %s\n", expr->Identifier);
+		} else {
+			OUT("%d, /* Top Expression: %s */\n", bt, ASN_EXPR_TYPE2STR(bt));
+		}
+
+		if (expr->_anonymous_type) {
+			OUT("1,\t/* Anonymous Type */\n");
+		}
+		else {
+			OUT("0,\t/* Not an Anonymous Type */\n");
+		}
+
+		OUT("sizeof(%s%s%s%s),\n", arg->embed ? "struct " : "",
+			(expr->marker.flags & EM_INDIRECT) ? "*" : "",
+			expr->_anonymous_type ? "" :
+				arg->embed ? MKID_safe(expr) : MKID(expr),
+			arg->embed ? "" : "_t");
+
+		OUT("1\t/* Generated */\n");
+
 	INDENT(-1);
 	OUT("};\n");
 	OUT("\n");
@@ -2852,4 +2880,28 @@ static int compar_cameo(const void *ap, const void *bp) {
 		return 1;
 	return 0;
 
+}
+
+static int
+base_type(asn1p_expr_t *expr)
+{
+	int bt = -1;
+
+	if (expr->meta_type == AMT_TYPEREF) {
+		asn1p_expr_t *top_expr = expr;
+		do {
+			top_expr = asn1f_lookup_symbol_ex(top_expr->module->asn1p, top_expr, top_expr->reference);
+		} while (top_expr->meta_type == AMT_TYPEREF);
+
+		if (top_expr) {
+			bt = top_expr->expr_type;
+		} else {
+			bt = -1;
+		}
+	}
+	else {
+		bt =  expr->expr_type;
+	}
+
+	return bt;
 }

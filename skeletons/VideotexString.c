@@ -33,6 +33,10 @@ asn_TYPE_descriptor_t asn_DEF_VideotexString = {
 	  / sizeof(asn_DEF_VideotexString_tags[0]),
 	0,	/* No PER visible constraints */
 	0, 0,	/* No members */
-	0	/* No specifics */
+	0,	/* No specifics */
+	ASN1_TYPE_VideotexString,
+	0, /* Not Anonymous */
+	sizeof(VideotexString_t),
+	0 /* Not generated */
 };
 

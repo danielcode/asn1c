@@ -38,5 +38,9 @@ asn_TYPE_descriptor_t asn_DEF_ISO646String = {
 	  / sizeof(asn_DEF_ISO646String_tags[0]),
 	&asn_DEF_ISO646String_constraints,
 	0, 0,	/* No members */
-	0	/* No specifics */
+	0,	/* No specifics */
+	ASN1_TYPE_ISO646String,
+	0, /* Not Anonymous */
+	sizeof(ISO646String_t),
+	0 /* Not generated */
 };

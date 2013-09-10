@@ -58,7 +58,11 @@ asn_TYPE_descriptor_t asn_DEF_NumericString = {
 	  / sizeof(asn_DEF_NumericString_tags[0]),
 	&asn_DEF_NumericString_constraints,
 	0, 0,	/* No members */
-	0	/* No specifics */
+	0,	/* No specifics */
+	ASN1_TYPE_NumericString,
+	0, /* Not Anonymous */
+	sizeof(NumericString_t),
+	0 /* Not generated */
 };
 
 int

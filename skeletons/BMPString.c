@@ -44,7 +44,11 @@ asn_TYPE_descriptor_t asn_DEF_BMPString = {
 	  / sizeof(asn_DEF_BMPString_tags[0]),
 	&asn_DEF_BMPString_constraints,
 	0, 0,	/* No members */
-	&asn_DEF_BMPString_specs
+	&asn_DEF_BMPString_specs,
+	ASN1_TYPE_BMPString,
+	0, /* Not Anonymous */
+	sizeof(BMPString_t),
+	0	/* Not generated */
 };
 
 /*

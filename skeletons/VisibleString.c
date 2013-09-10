@@ -38,7 +38,11 @@ asn_TYPE_descriptor_t asn_DEF_VisibleString = {
 	  / sizeof(asn_DEF_VisibleString_tags[0]),
 	&asn_DEF_VisibleString_constraints,
 	0, 0,	/* No members */
-	0	/* No specifics */
+	0,	/* No specifics */
+    ASN1_TYPE_VisibleString,
+	0, /* Not Anonymous */
+	sizeof(VisibleString_t),
+	0 /* Not generated */
 };
 
 int

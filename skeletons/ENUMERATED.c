@@ -33,7 +33,11 @@ asn_TYPE_descriptor_t asn_DEF_ENUMERATED = {
 	sizeof(asn_DEF_ENUMERATED_tags) / sizeof(asn_DEF_ENUMERATED_tags[0]),
 	0,	/* No PER visible constraints */
 	0, 0,	/* No members */
-	0	/* No specifics */
+	0,	/* No specifics */
+	ASN1_TYPE_ENUMERATED,
+	0, /* Not Anonymous */
+	sizeof(ENUMERATED_t),
+	0 /* Not generated */
 };
 
 asn_dec_rval_t

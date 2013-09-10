@@ -49,7 +49,11 @@ asn_TYPE_descriptor_t asn_DEF_UTCTime = {
 	  / sizeof(asn_DEF_UTCTime_tags[0]),
 	&asn_DEF_UTCTime_constraints,
 	0, 0,	/* No members */
-	0	/* No specifics */
+	0,	/* No specifics */
+	ASN1_TYPE_UTCTime,
+	0, /* Not Anonymous */
+	sizeof(UTCTime_t),
+	0 /* Not generated */
 };
 
 #endif	/* __ASN_INTERNAL_TEST_MODE__ */

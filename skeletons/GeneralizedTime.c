@@ -176,7 +176,11 @@ asn_TYPE_descriptor_t asn_DEF_GeneralizedTime = {
 	  / sizeof(asn_DEF_GeneralizedTime_tags[0]),
 	&asn_DEF_GeneralizedTime_constraints,
 	0, 0,	/* No members */
-	0	/* No specifics */
+	0,	/* No specifics */
+	ASN1_TYPE_GeneralizedTime,
+	0, /* Not Anonymous */
+	sizeof(GeneralizedTime_t),
+	0 /* Not generated */
 };
 
 #endif	/* __ASN_INTERNAL_TEST_MODE__ */

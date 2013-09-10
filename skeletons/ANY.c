@@ -27,6 +27,10 @@ asn_TYPE_descriptor_t asn_DEF_ANY = {
 	0,	/* No PER visible constraints */
 	0, 0,	/* No members */
 	&asn_DEF_ANY_specs,
+	ASN1_TYPE_ANY,
+	0, /* Not Anonymous */
+	sizeof(ANY_t),
+	0	/* Not generated */
 };
 
 

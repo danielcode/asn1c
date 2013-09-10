@@ -45,7 +45,11 @@ asn_TYPE_descriptor_t asn_DEF_OCTET_STRING = {
 	  / sizeof(asn_DEF_OCTET_STRING_tags[0]),
 	0,	/* No PER visible constraints */
 	0, 0,	/* No members */
-	&asn_DEF_OCTET_STRING_specs
+	&asn_DEF_OCTET_STRING_specs,
+	ASN1_TYPE_OCTET_STRING,
+	0, /* Not Anonymous */
+	sizeof(OCTET_STRING_t),
+	0 /* Not generated */
 };
 
 #undef	_CH_PHASE

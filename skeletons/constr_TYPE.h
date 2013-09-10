@@ -12,6 +12,8 @@
 #ifndef	_CONSTR_TYPE_H_
 #define	_CONSTR_TYPE_H_
 
+#include "expr_types.h"
+
 #include <ber_tlv_length.h>
 #include <ber_tlv_tag.h>
 
@@ -126,6 +128,26 @@ typedef struct asn_TYPE_descriptor_s {
 	 * functions above.
 	 */
 	void *specifics;
+
+	/*
+	 * Base type of expression
+	 */
+	int base_type;
+
+	/*
+	 * Whether the type is anonymous
+	 */
+	int anonymous;
+
+	/*
+	 * Size of container
+	 */
+	int	  container_size;
+
+	/*
+	 * Generated, or built in?
+	 */
+	int	  generated;
 } asn_TYPE_descriptor_t;
 
 /*

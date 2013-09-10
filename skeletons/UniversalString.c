@@ -44,7 +44,11 @@ asn_TYPE_descriptor_t asn_DEF_UniversalString = {
 	  / sizeof(asn_DEF_UniversalString_tags[0]),
 	&asn_DEF_UniversalString_constraints,
 	0, 0,	/* No members */
-	&asn_DEF_UniversalString_specs
+	&asn_DEF_UniversalString_specs,
+	ASN1_TYPE_UniversalString,
+	0, /* Not Anonymous */
+	sizeof(UniversalString_t),
+	0 /* Not generated */
 };
 
 

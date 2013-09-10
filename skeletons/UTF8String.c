@@ -34,7 +34,11 @@ asn_TYPE_descriptor_t asn_DEF_UTF8String = {
 	  / sizeof(asn_DEF_UTF8String_tags[0]),
 	0,	/* No PER visible constraints */
 	0, 0,	/* No members */
-	0	/* No specifics */
+	0,	/* No specifics */
+	ASN1_TYPE_UTF8String,
+	0, /* Not Anonymous */
+	sizeof(UTF8String_t),
+	0 /* Not generated */
 };
 
 /*

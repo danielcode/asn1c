@@ -32,7 +32,11 @@ asn_TYPE_descriptor_t asn_DEF_NULL = {
 	sizeof(asn_DEF_NULL_tags) / sizeof(asn_DEF_NULL_tags[0]),
 	0,	/* No PER visible constraints */
 	0, 0,	/* No members */
-	0	/* No specifics */
+	0,	/* No specifics */
+	ASN1_TYPE_NULL,
+	0, /* Not Anonymous */
+	sizeof(NULL_t),
+	0 /* Not generated */
 };
 
 asn_enc_rval_t

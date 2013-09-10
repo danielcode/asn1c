@@ -36,7 +36,11 @@ asn_TYPE_descriptor_t asn_DEF_OBJECT_IDENTIFIER = {
 	    / sizeof(asn_DEF_OBJECT_IDENTIFIER_tags[0]),
 	0,	/* No PER visible constraints */
 	0, 0,	/* No members */
-	0	/* No specifics */
+	0,	/* No specifics */
+	ASN1_TYPE_OBJECT_IDENTIFIER,
+	0, /* Not Anonymous */
+	sizeof(OBJECT_IDENTIFIER_t),
+	0 /* Not generated */
 };
 
 

@@ -38,7 +38,11 @@ asn_TYPE_descriptor_t asn_DEF_BIT_STRING = {
 	  / sizeof(asn_DEF_BIT_STRING_tags[0]),
 	0,	/* No PER visible constraints */
 	0, 0,	/* No members */
-	&asn_DEF_BIT_STRING_specs
+	&asn_DEF_BIT_STRING_specs,
+	ASN1_TYPE_BIT_STRING,
+	0, /* Not Anonymous */
+	sizeof(BIT_STRING_t),
+	0	/* Not generated */
 };
 
 /*

@@ -68,7 +68,11 @@ asn_TYPE_descriptor_t asn_DEF_PrintableString = {
 	  / sizeof(asn_DEF_PrintableString_tags[0]),
 	&asn_DEF_PrintableString_constraints,
 	0, 0,	/* No members */
-	0	/* No specifics */
+	0,	/* No specifics */
+	ASN1_TYPE_PrintableString,
+	0, /* Not Anonymous */
+	sizeof(PrintableString_t),
+	0 /* Not generated */
 };
 
 
