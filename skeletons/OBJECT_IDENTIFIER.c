@@ -40,7 +40,8 @@ asn_TYPE_descriptor_t asn_DEF_OBJECT_IDENTIFIER = {
 	ASN1_TYPE_OBJECT_IDENTIFIER,
 	0, /* Not Anonymous */
 	sizeof(OBJECT_IDENTIFIER_t),
-	0 /* Not generated */
+	0, /* Not generated */
+	"asn_DEF_OBJECT_IDENTIFIER" /* Symbol string */
 };
 
 

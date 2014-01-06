@@ -148,6 +148,11 @@ typedef struct asn_TYPE_descriptor_s {
 	 * Generated, or built in?
 	 */
 	int	  generated;
+
+	/*
+	 * Name of the symbol representing the type.
+	 */
+	char *symbol;
 } asn_TYPE_descriptor_t;
 
 /*

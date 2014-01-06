@@ -42,7 +42,8 @@ asn_TYPE_descriptor_t asn_DEF_IA5String = {
 	ASN1_TYPE_IA5String,
 	0, /* Not Anonymous */
 	sizeof(IA5String_t),
-	0 /* Not generated */
+	0, /* Not generated */
+	"asn_DEF_IA5String" /* Symbol string */
 };
 
 int

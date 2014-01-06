@@ -43,7 +43,8 @@ asn_TYPE_descriptor_t asn_DEF_NativeReal = {
 	ASN1_TYPE_REAL,
 	0, /* Not Anonymous */
 	sizeof(REAL_t),
-	0 /* Not generated */
+	0, /* Not generated */
+	"asn_DEF_NativeReal" /* Symbol string */
 };
 
 /*

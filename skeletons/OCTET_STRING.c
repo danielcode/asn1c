@@ -49,7 +49,8 @@ asn_TYPE_descriptor_t asn_DEF_OCTET_STRING = {
 	ASN1_TYPE_OCTET_STRING,
 	0, /* Not Anonymous */
 	sizeof(OCTET_STRING_t),
-	0 /* Not generated */
+	0, /* Not generated */
+	"asn_DEF_OCTET_STRING" /* Symbol string */
 };
 
 #undef	_CH_PHASE

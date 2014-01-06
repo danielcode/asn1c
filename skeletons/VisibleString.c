@@ -42,7 +42,8 @@ asn_TYPE_descriptor_t asn_DEF_VisibleString = {
     ASN1_TYPE_VisibleString,
 	0, /* Not Anonymous */
 	sizeof(VisibleString_t),
-	0 /* Not generated */
+	0, /* Not generated */
+	"asn_DEF_VisibleString" /* Symbol string */
 };
 
 int

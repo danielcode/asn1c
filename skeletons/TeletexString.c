@@ -37,7 +37,8 @@ asn_TYPE_descriptor_t asn_DEF_TeletexString = {
 	ASN1_TYPE_TeletexString,
 	0, /* Not Anonymous */
 	sizeof(TeletexString_t),
-	0 /* Not generated */
+	0, /* Not generated */
+	"asn_DEF_TeletexString" /* Symbol string */
 };
 
 /*

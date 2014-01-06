@@ -41,7 +41,8 @@ asn_TYPE_descriptor_t asn_DEF_RELATIVE_OID = {
 	ASN1_TYPE_RELATIVE_OID,
 	0, /* Not Anonymous */
 	sizeof(RELATIVE_OID_t),
-	0 /* Not generated */
+	0, /* Not generated */
+	"asn_DEF_RELATIVE_OID" /* Symbol string */
 };
 
 static ssize_t

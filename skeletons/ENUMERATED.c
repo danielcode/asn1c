@@ -37,7 +37,8 @@ asn_TYPE_descriptor_t asn_DEF_ENUMERATED = {
 	ASN1_TYPE_ENUMERATED,
 	0, /* Not Anonymous */
 	sizeof(ENUMERATED_t),
-	0 /* Not generated */
+	0, /* Not generated */
+	"asn_DEF_ENUMERATED" /* Symbol string */
 };
 
 asn_dec_rval_t

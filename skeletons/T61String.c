@@ -37,6 +37,7 @@ asn_TYPE_descriptor_t asn_DEF_T61String = {
 	ASN1_TYPE_T61String,
 	0, /* Not Anonymous */
 	sizeof(T61String_t),
-	0 /* Not generated */
+	0, /* Not generated */
+	"asn_DEF_T61String" /* Symbol string */
 };
 

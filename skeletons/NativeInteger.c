@@ -42,7 +42,8 @@ asn_TYPE_descriptor_t asn_DEF_NativeInteger = {
 	ASN1_TYPE_INTEGER,
 	0, /* Not Anonymous */
 	sizeof(INTEGER_t),
-	0 /* Not generated */
+	0, /* Not generated */
+	"asn_DEF_NativeInteger" /* Symbol string */
 };
 
 /*

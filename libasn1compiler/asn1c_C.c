@@ -51,7 +51,7 @@ static int asn1c_recurse(arg_t *arg, asn1p_expr_t *expr, int (*callback)(arg_t *
 static asn1p_expr_type_e expr_get_type(arg_t *arg, asn1p_expr_t *expr);
 static int try_inline_default(arg_t *arg, asn1p_expr_t *expr, int out);
 static int *compute_canonical_members_order(arg_t *arg, int el_count);
-static int  base_type(asn1p_expr_t *expr);
+static int  base_type(asn1p_expr_t *expr, arg_t *arg);
 
 enum tvm_compat {
 	_TVM_SAME	= 0,	/* tags and all_tags are same */
@@ -2547,7 +2547,7 @@ emit_type_DEF(arg_t *arg, asn1p_expr_t *expr, enum tvm_compat tv_mode, int tags_
 		/*
 		 * Topmost parent
 		 */
-		bt = base_type(expr);
+		bt = base_type(expr, arg);
 		if (bt == -1) {
 				OUT("#error Can't find top expression for %s\n", expr->Identifier);
 		} else {
@@ -2561,13 +2561,13 @@ emit_type_DEF(arg_t *arg, asn1p_expr_t *expr, enum tvm_compat tv_mode, int tags_
 			OUT("0,\t/* Not an Anonymous Type */\n");
 		}
 
-		OUT("sizeof(%s%s%s%s),\n", arg->embed ? "struct " : "",
-			(expr->marker.flags & EM_INDIRECT) ? "*" : "",
-			expr->_anonymous_type ? "" :
-				arg->embed ? MKID_safe(expr) : MKID(expr),
-			arg->embed ? "" : "_t");
+		OUT("sizeof(%s%s%s),\n",
+			arg->embed ? "struct " : "",												/* 1st %s */
+			expr->_anonymous_type ? "" : (arg->embed ? MKID_safe(expr) : MKID(expr)),	/* 2nd %s */
+			arg->embed ? "" : "_t");													/* 3rd %s */
 
-		OUT("1\t/* Generated */\n");
+		OUT("1,\t/* Generated */\n");
+		OUT("\"asn_DEF_%s\" /* Symbol String */\n", p);
 
 	INDENT(-1);
 	OUT("};\n");
@@ -2883,7 +2883,7 @@ static int compar_cameo(const void *ap, const void *bp) {
 }
 
 static int
-base_type(asn1p_expr_t *expr)
+base_type(asn1p_expr_t *expr, arg_t *arg)
 {
 	int bt = -1;
 

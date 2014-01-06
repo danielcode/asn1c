@@ -56,7 +56,8 @@ asn_TYPE_descriptor_t asn_DEF_REAL = {
 	ASN1_TYPE_REAL,
 	0, /* Not Anonymous */
 	sizeof(REAL_t),
-	0 /* Not generated */
+	0, /* Not generated */
+	"asn_DEF_REAL" /* Symbol string */
 };
 
 typedef enum specialRealValue {

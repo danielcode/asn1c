@@ -37,6 +37,7 @@ asn_TYPE_descriptor_t asn_DEF_VideotexString = {
 	ASN1_TYPE_VideotexString,
 	0, /* Not Anonymous */
 	sizeof(VideotexString_t),
-	0 /* Not generated */
+	0, /* Not generated */
+	"asn_DEF_VideotexString" /* Symbol string */
 };
 

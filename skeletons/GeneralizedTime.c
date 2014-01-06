@@ -180,7 +180,8 @@ asn_TYPE_descriptor_t asn_DEF_GeneralizedTime = {
 	ASN1_TYPE_GeneralizedTime,
 	0, /* Not Anonymous */
 	sizeof(GeneralizedTime_t),
-	0 /* Not generated */
+	0, /* Not generated */
+	"asn_DEF_GeneralizedTime" /* Symbol string */
 };
 
 #endif	/* __ASN_INTERNAL_TEST_MODE__ */

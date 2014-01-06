@@ -30,7 +30,8 @@ asn_TYPE_descriptor_t asn_DEF_ANY = {
 	ASN1_TYPE_ANY,
 	0, /* Not Anonymous */
 	sizeof(ANY_t),
-	0	/* Not generated */
+	0,	/* Not generated */
+	"asn_DEF_ANY" /* Symbol string */
 };
 
 
