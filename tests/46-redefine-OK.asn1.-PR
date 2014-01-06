@@ -36,6 +36,7 @@ static void
 PrimitiveType_1_inherit_TYPE_descriptor(asn_TYPE_descriptor_t *td) {
 	td->free_struct    = asn_DEF_OCTET_STRING.free_struct;
 	td->print_struct   = asn_DEF_OCTET_STRING.print_struct;
+	td->check_constraints = asn_DEF_OCTET_STRING.check_constraints;
 	td->ber_decoder    = asn_DEF_OCTET_STRING.ber_decoder;
 	td->der_encoder    = asn_DEF_OCTET_STRING.der_encoder;
 	td->xer_decoder    = asn_DEF_OCTET_STRING.xer_decoder;
@@ -158,7 +159,7 @@ static ber_tlv_tag_t asn_DEF_ConstructedType_tags_1[] = {
 	(ASN_TAG_CLASS_UNIVERSAL | (16 << 2))
 };
 static asn_TYPE_tag2member_t asn_MAP_ConstructedType_tag2el_1[] = {
-    { (ASN_TAG_CLASS_CONTEXT | (5 << 2)), 0, 0, 0 } /* field at 18 */
+    { (ASN_TAG_CLASS_CONTEXT | (5 << 2)), 0, 0, 0 } /* field */
 };
 static asn_SEQUENCE_specifics_t asn_SPC_ConstructedType_specs_1 = {
 	sizeof(struct ConstructedType),
@@ -231,6 +232,7 @@ static void
 T_1_inherit_TYPE_descriptor(asn_TYPE_descriptor_t *td) {
 	td->free_struct    = asn_DEF_ConstructedType.free_struct;
 	td->print_struct   = asn_DEF_ConstructedType.print_struct;
+	td->check_constraints = asn_DEF_ConstructedType.check_constraints;
 	td->ber_decoder    = asn_DEF_ConstructedType.ber_decoder;
 	td->der_encoder    = asn_DEF_ConstructedType.der_encoder;
 	td->xer_decoder    = asn_DEF_ConstructedType.xer_decoder;

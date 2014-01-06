@@ -77,10 +77,10 @@ static asn_TYPE_member_t asn_MBR_T_1[] = {
 		},
 };
 static asn_TYPE_tag2member_t asn_MAP_T_tag2el_1[] = {
-    { (ASN_TAG_CLASS_UNIVERSAL | (2 << 2)), 0, 0, 0 }, /* t-a at 15 */
-    { (ASN_TAG_CLASS_UNIVERSAL | (4 << 2)), 1, 0, 0 }, /* t-b at 16 */
-    { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 2, 0, 0 }, /* t-c at 17 */
-    { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 3, 0, 0 } /* t-d at 19 */
+    { (ASN_TAG_CLASS_UNIVERSAL | (2 << 2)), 0, 0, 0 }, /* t-a */
+    { (ASN_TAG_CLASS_UNIVERSAL | (4 << 2)), 1, 0, 0 }, /* t-b */
+    { (ASN_TAG_CLASS_CONTEXT | (1 << 2)), 2, 0, 0 }, /* t-c */
+    { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 3, 0, 0 } /* t-d */
 };
 static asn_CHOICE_specifics_t asn_SPC_T_specs_1 = {
 	sizeof(struct T),
@@ -169,8 +169,8 @@ static asn_TYPE_member_t asn_MBR_Choice1_1[] = {
 		},
 };
 static asn_TYPE_tag2member_t asn_MAP_Choice1_tag2el_1[] = {
-    { (ASN_TAG_CLASS_UNIVERSAL | (2 << 2)), 1, 0, 0 }, /* c-b at 24 */
-    { (ASN_TAG_CLASS_UNIVERSAL | (4 << 2)), 0, 0, 0 } /* c-a at 22 */
+    { (ASN_TAG_CLASS_UNIVERSAL | (2 << 2)), 1, 0, 0 }, /* c-b */
+    { (ASN_TAG_CLASS_UNIVERSAL | (4 << 2)), 0, 0, 0 } /* c-a */
 };
 static asn_CHOICE_specifics_t asn_SPC_Choice1_specs_1 = {
 	sizeof(struct Choice1),
@@ -285,10 +285,10 @@ static ber_tlv_tag_t asn_DEF_Choice2_tags_1[] = {
 	(ASN_TAG_CLASS_CONTEXT | (2 << 2))
 };
 static asn_TYPE_tag2member_t asn_MAP_Choice2_tag2el_1[] = {
-    { (ASN_TAG_CLASS_UNIVERSAL | (2 << 2)), 1, 0, 0 }, /* c-b at 28 */
-    { (ASN_TAG_CLASS_UNIVERSAL | (4 << 2)), 0, 0, 0 }, /* c-a at 27 */
-    { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 2, 0, 0 }, /* c-d at 29 */
-    { (ASN_TAG_CLASS_CONTEXT | (4 << 2)), 3, 0, 0 } /* c-e at 31 */
+    { (ASN_TAG_CLASS_UNIVERSAL | (2 << 2)), 1, 0, 0 }, /* c-b */
+    { (ASN_TAG_CLASS_UNIVERSAL | (4 << 2)), 0, 0, 0 }, /* c-a */
+    { (ASN_TAG_CLASS_CONTEXT | (3 << 2)), 2, 0, 0 }, /* c-d */
+    { (ASN_TAG_CLASS_CONTEXT | (4 << 2)), 3, 0, 0 } /* c-e */
 };
 static asn_CHOICE_specifics_t asn_SPC_Choice2_specs_1 = {
 	sizeof(struct Choice2),
@@ -362,6 +362,7 @@ static void
 Choice3_1_inherit_TYPE_descriptor(asn_TYPE_descriptor_t *td) {
 	td->free_struct    = asn_DEF_Choice2.free_struct;
 	td->print_struct   = asn_DEF_Choice2.print_struct;
+	td->check_constraints = asn_DEF_Choice2.check_constraints;
 	td->ber_decoder    = asn_DEF_Choice2.ber_decoder;
 	td->der_encoder    = asn_DEF_Choice2.der_encoder;
 	td->xer_decoder    = asn_DEF_Choice2.xer_decoder;
@@ -487,6 +488,7 @@ static void
 Choice4_1_inherit_TYPE_descriptor(asn_TYPE_descriptor_t *td) {
 	td->free_struct    = asn_DEF_Choice2.free_struct;
 	td->print_struct   = asn_DEF_Choice2.print_struct;
+	td->check_constraints = asn_DEF_Choice2.check_constraints;
 	td->ber_decoder    = asn_DEF_Choice2.ber_decoder;
 	td->der_encoder    = asn_DEF_Choice2.der_encoder;
 	td->xer_decoder    = asn_DEF_Choice2.xer_decoder;
@@ -612,6 +614,7 @@ static void
 Choice5_1_inherit_TYPE_descriptor(asn_TYPE_descriptor_t *td) {
 	td->free_struct    = asn_DEF_Choice2.free_struct;
 	td->print_struct   = asn_DEF_Choice2.print_struct;
+	td->check_constraints = asn_DEF_Choice2.check_constraints;
 	td->ber_decoder    = asn_DEF_Choice2.ber_decoder;
 	td->der_encoder    = asn_DEF_Choice2.der_encoder;
 	td->xer_decoder    = asn_DEF_Choice2.xer_decoder;
@@ -736,6 +739,7 @@ static void
 Choice6_1_inherit_TYPE_descriptor(asn_TYPE_descriptor_t *td) {
 	td->free_struct    = asn_DEF_Choice1.free_struct;
 	td->print_struct   = asn_DEF_Choice1.print_struct;
+	td->check_constraints = asn_DEF_Choice1.check_constraints;
 	td->ber_decoder    = asn_DEF_Choice1.ber_decoder;
 	td->der_encoder    = asn_DEF_Choice1.der_encoder;
 	td->xer_decoder    = asn_DEF_Choice1.xer_decoder;

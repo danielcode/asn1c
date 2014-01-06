@@ -1237,6 +1237,7 @@ asn1c_lang_C_type_SIMPLE_TYPE(arg_t *arg) {
 	char *type_name = asn1c_type_name(arg, expr, TNF_SAFE);
 	OUT("td->free_struct    = asn_DEF_%s.free_struct;\n",    type_name);
 	OUT("td->print_struct   = asn_DEF_%s.print_struct;\n",   type_name);
+	OUT("td->check_constraints = asn_DEF_%s.check_constraints;\n", type_name);
 	OUT("td->ber_decoder    = asn_DEF_%s.ber_decoder;\n",    type_name);
 	OUT("td->der_encoder    = asn_DEF_%s.der_encoder;\n",    type_name);
 	OUT("td->xer_decoder    = asn_DEF_%s.xer_decoder;\n",    type_name);
@@ -1671,11 +1672,12 @@ emit_tag2member_map(arg_t *arg, tag2el_t *tag2el, int tag2el_count, const char *
 		OUT("%d, ", tag2el[i].el_no);
 		OUT("%d, ", tag2el[i].toff_first);
 		OUT("%d ", tag2el[i].toff_last);
-		OUT("}%s /* %s at %d */\n",
+		OUT("}%s /* %s",
 			(i + 1 < tag2el_count) ? "," : "",
-			tag2el[i].from_expr->Identifier,
-			tag2el[i].from_expr->_lineno
-		);
+			tag2el[i].from_expr->Identifier);
+        if(arg->flags & A1C_LINE_REFS)
+            OUT("at %d", tag2el[i].from_expr->_lineno);
+        OUT(" */\n");
 	}
 	OUT("};\n");
 
