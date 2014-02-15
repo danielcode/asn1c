@@ -64,7 +64,7 @@ enum etd_spec {
 	ETD_NO_SPECIFICS,
 	ETD_HAS_SPECIFICS
 };
-static int emit_type_DEF(arg_t *arg, asn1p_expr_t *expr, enum tvm_compat tv_mode, int tags_count, int all_tags_count, int elements_count, enum etd_spec);
+static int emit_type_DEF(arg_t *arg, asn1p_expr_t *expr, enum tvm_compat tv_mode, int tags_count, int all_tags_count, int elements_count, enum etd_spec, int simple);
 
 #define	C99_MODE	(!(arg->flags & A1C_NO_C99))
 #define	UNNAMED_UNIONS	(arg->flags & A1C_UNNAMED_UNIONS)
@@ -476,7 +476,7 @@ asn1c_lang_C_type_SEQUENCE_def(arg_t *arg) {
 	 * Emit asn_DEF_xxx table.
 	 */
 	emit_type_DEF(arg, expr, tv_mode, tags_count, all_tags_count, elements,
-			ETD_HAS_SPECIFICS);
+			ETD_HAS_SPECIFICS, 0);
 
 	REDIR(OT_TYPE_DECLS);
 
@@ -691,7 +691,7 @@ asn1c_lang_C_type_SET_def(arg_t *arg) {
 	 * Emit asn_DEF_xxx table.
 	 */
 	emit_type_DEF(arg, expr, tv_mode, tags_count, all_tags_count, elements,
-			ETD_HAS_SPECIFICS);
+			ETD_HAS_SPECIFICS, 0);
 
 	REDIR(OT_TYPE_DECLS);
 
@@ -839,7 +839,7 @@ asn1c_lang_C_type_SEx_OF_def(arg_t *arg, int seq_of) {
 	 * Emit asn_DEF_xxx table.
 	 */
 	emit_type_DEF(arg, expr, tv_mode, tags_count, all_tags_count, 1,
-			ETD_HAS_SPECIFICS);
+			ETD_HAS_SPECIFICS, 0);
 
 	REDIR(OT_TYPE_DECLS);
 
@@ -1025,7 +1025,7 @@ asn1c_lang_C_type_CHOICE_def(arg_t *arg) {
 	 * Emit asn_DEF_xxx table.
 	 */
 	emit_type_DEF(arg, expr, tv_mode, tags_count, all_tags_count, elements,
-			ETD_HAS_SPECIFICS);
+			ETD_HAS_SPECIFICS, 0);
 
 	REDIR(OT_TYPE_DECLS);
 
@@ -1210,7 +1210,7 @@ asn1c_lang_C_type_SIMPLE_TYPE(arg_t *arg) {
 		tv_mode, tags_count, all_tags_count);
 
 	emit_type_DEF(arg, expr, tv_mode, tags_count, all_tags_count,
-		0, etd_spec);
+		0, etd_spec, 1);
 
 	REDIR(OT_CODE);
 
@@ -2405,7 +2405,7 @@ emit_member_table(arg_t *arg, asn1p_expr_t *expr) {
  * Generate "asn_DEF_XXX" type definition.
  */
 static int
-emit_type_DEF(arg_t *arg, asn1p_expr_t *expr, enum tvm_compat tv_mode, int tags_count, int all_tags_count, int elements_count, enum etd_spec spec) {
+emit_type_DEF(arg_t *arg, asn1p_expr_t *expr, enum tvm_compat tv_mode, int tags_count, int all_tags_count, int elements_count, enum etd_spec spec, int simple) {
 	asn1p_expr_t *terminal;
 	int using_type_name = 0;
 	char *p = MKID(expr);
@@ -2569,7 +2569,13 @@ emit_type_DEF(arg_t *arg, asn1p_expr_t *expr, enum tvm_compat tv_mode, int tags_
 			arg->embed ? "" : "_t");													/* 3rd %s */
 
 		OUT("1,\t/* Generated */\n");
-		OUT("\"asn_DEF_%s\" /* Symbol String */\n", p);
+		OUT("\"asn_DEF_%s\", /* Symbol String */\n", p);
+
+		if (simple) {
+        	OUT("&%s_%d_inherit_TYPE_descriptor\n", MKID(expr), expr->_type_unique_index);
+		} else {
+        	OUT("(void (*)(struct asn_TYPE_descriptor_s *))NULL\n");
+		}
 
 	INDENT(-1);
 	OUT("};\n");

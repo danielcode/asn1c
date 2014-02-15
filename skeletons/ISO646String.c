@@ -43,5 +43,6 @@ asn_TYPE_descriptor_t asn_DEF_ISO646String = {
 	0, /* Not Anonymous */
 	sizeof(ISO646String_t),
 	0, /* Not generated */
-	"asn_DEF_ISO646String" /* Symbol string */
+	"asn_DEF_ISO646String", /* Symbol string */
+	(void (*)(struct asn_TYPE_descriptor_s *))NULL /* Not inherited */
 };

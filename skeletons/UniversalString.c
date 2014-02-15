@@ -49,7 +49,8 @@ asn_TYPE_descriptor_t asn_DEF_UniversalString = {
 	0, /* Not Anonymous */
 	sizeof(UniversalString_t),
 	0, /* Not generated */
-	"asn_DEF_UniversalString" /* Symbol string */
+	"asn_DEF_UniversalString", /* Symbol string */
+	(void (*)(struct asn_TYPE_descriptor_s *))NULL /* Not inherited */
 };
 
 

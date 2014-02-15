@@ -63,7 +63,8 @@ asn_TYPE_descriptor_t asn_DEF_NumericString = {
 	0, /* Not Anonymous */
 	sizeof(NumericString_t),
 	0, /* Not generated */
-	"asn_DEF_NumericString" /* Symbol string */
+	"asn_DEF_NumericString", /* Symbol string */
+	(void (*)(struct asn_TYPE_descriptor_s *))NULL /* Not inherited */
 };
 
 int

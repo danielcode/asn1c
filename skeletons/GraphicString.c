@@ -40,6 +40,7 @@ asn_TYPE_descriptor_t asn_DEF_GraphicString = {
 	0, /* Not Anonymous */
 	sizeof(GraphicString_t),
 	0, /* Not generated */
-	"asn_DEF_GraphicString" /* Symbol string */
+	"asn_DEF_GraphicString", /* Symbol string */
+	(void (*)(struct asn_TYPE_descriptor_s *))NULL /* Not inherited */
 };
 

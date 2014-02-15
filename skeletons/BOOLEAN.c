@@ -36,7 +36,8 @@ asn_TYPE_descriptor_t asn_DEF_BOOLEAN = {
 	0, /* Not Anonymous */
 	sizeof(BOOLEAN_t),
 	0, /* Not generated */
-	"asn_DEF_BOOLEAN" /* Symbol string */
+	"asn_DEF_BOOLEAN", /* Symbol string */
+	(void (*)(struct asn_TYPE_descriptor_s *))NULL /* Not inherited */
 };
 
 /*

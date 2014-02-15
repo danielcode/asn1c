@@ -43,7 +43,8 @@ asn_TYPE_descriptor_t asn_DEF_VisibleString = {
 	0, /* Not Anonymous */
 	sizeof(VisibleString_t),
 	0, /* Not generated */
-	"asn_DEF_VisibleString" /* Symbol string */
+	"asn_DEF_VisibleString", /* Symbol string */
+	(void (*)(struct asn_TYPE_descriptor_s *))NULL /* Not inherited */
 };
 
 int

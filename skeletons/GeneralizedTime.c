@@ -181,7 +181,8 @@ asn_TYPE_descriptor_t asn_DEF_GeneralizedTime = {
 	0, /* Not Anonymous */
 	sizeof(GeneralizedTime_t),
 	0, /* Not generated */
-	"asn_DEF_GeneralizedTime" /* Symbol string */
+	"asn_DEF_GeneralizedTime", /* Symbol string */
+	(void (*)(struct asn_TYPE_descriptor_s *))NULL /* Not inherited */
 };
 
 #endif	/* __ASN_INTERNAL_TEST_MODE__ */

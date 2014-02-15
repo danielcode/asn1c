@@ -38,7 +38,8 @@ asn_TYPE_descriptor_t asn_DEF_TeletexString = {
 	0, /* Not Anonymous */
 	sizeof(TeletexString_t),
 	0, /* Not generated */
-	"asn_DEF_TeletexString" /* Symbol string */
+	"asn_DEF_TeletexString", /* Symbol string */
+	(void (*)(struct asn_TYPE_descriptor_s *))NULL /* Not inherited */
 };
 
 /*

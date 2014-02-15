@@ -73,7 +73,8 @@ asn_TYPE_descriptor_t asn_DEF_PrintableString = {
 	0, /* Not Anonymous */
 	sizeof(PrintableString_t),
 	0, /* Not generated */
-	"asn_DEF_PrintableString" /* Symbol string */
+	"asn_DEF_PrintableString", /* Symbol string */
+	(void (*)(struct asn_TYPE_descriptor_s *))NULL /* Not inherited */
 };
 
 

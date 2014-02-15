@@ -42,7 +42,8 @@ asn_TYPE_descriptor_t asn_DEF_NativeEnumerated = {
 	0, /* Not Anonymous */
 	sizeof(INTEGER_t),
 	0, /* Not generated */
-	"asn_DEF_NativeEnumerated" /* Symbol string */
+	"asn_DEF_NativeEnumerated", /* Symbol string */
+	(void (*)(struct asn_TYPE_descriptor_s *))NULL /* Not inherited */
 };
 
 asn_enc_rval_t

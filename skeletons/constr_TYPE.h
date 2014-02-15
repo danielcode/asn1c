@@ -153,6 +153,11 @@ typedef struct asn_TYPE_descriptor_s {
 	 * Name of the symbol representing the type.
 	 */
 	char *symbol;
+
+	/*
+	 * A function to handle inheritance
+	 */
+	void (*inherit)(struct asn_TYPE_descriptor_s *td);
 } asn_TYPE_descriptor_t;
 
 /*
