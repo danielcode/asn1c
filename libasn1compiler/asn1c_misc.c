@@ -359,9 +359,14 @@ asn1c_type_fits_long(arg_t *arg, asn1p_expr_t *expr) {
 	 */
 	range = asn1constraint_compute_PER_range(expr->expr_type,
 		expr->combined_constraints, ACT_EL_RANGE, 0, 0, 0);
+
 	if(!range
+	/* Commenting out
+    || range->extensible
+     * because this may or may not indicate wide type.
+     */
+    || (range->extensible && (arg->flags & A1C_USE_WIDE_TYPES))
 	|| range->empty_constraint
-	|| range->extensible
 	|| range->incompatible
 	|| range->not_PER_visible
 	) {
