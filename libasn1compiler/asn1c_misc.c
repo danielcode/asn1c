@@ -405,12 +405,3 @@ asn1c_type_fits_long(arg_t *arg, asn1p_expr_t *expr) {
 	return FL_FITS_SIGNED;
 }
 
-void
-asn1c_debug_type_names(arg_t *arg, asn1p_expr_t *expr) {
-	DEBUG("\tUnmodified Type: %s", asn1c_type_name(arg, expr, TNF_UNMODIFIED));                                 
-	DEBUG("\tInclude Type: %s", asn1c_type_name(arg, expr, TNF_INCLUDE));                                       
-	DEBUG("\tCTYPE Type: %s", asn1c_type_name(arg, expr, TNF_CTYPE));                                           
-	DEBUG("\tSAFE Type: %s", asn1c_type_name(arg, expr, TNF_SAFE));                                             
-	DEBUG("\tRSAFE Type: %s", asn1c_type_name(arg, expr, TNF_RSAFE));
-}
-

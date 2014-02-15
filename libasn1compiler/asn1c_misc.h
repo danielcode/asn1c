@@ -42,6 +42,4 @@ enum asn1c_fitslong_e {
 };
 enum asn1c_fitslong_e asn1c_type_fits_long(arg_t *arg, asn1p_expr_t *expr);
 
-void		  asn1c_debug_type_names(arg_t *arg, asn1p_expr_t *expr);
-
 #endif	/* _ASN1_COMPILER_MISC_H_ */
