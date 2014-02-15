@@ -34,8 +34,6 @@ asn_TYPE_descriptor_t asn_DEF_GraphicString = {
 	0,	/* No PER visible constraints */
 	0, 0,	/* No members */
 	0,	/* No specifics */
-	&asn_DEF_OCTET_STRING,		/* Implemented in terms of OCTET STRING */
-	NULL,						/* No parent - ASN.1 primitive */
 	ASN1_TYPE_GraphicString,
 	0, /* Not Anonymous */
 	sizeof(GraphicString_t),
