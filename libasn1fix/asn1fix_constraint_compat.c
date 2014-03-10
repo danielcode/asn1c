@@ -200,6 +200,7 @@ asn1constraint_default_alphabet(asn1p_expr_type_e expr_type) {
 	case ASN_STRING_PrintableString:
 		return &range_PrintableString;
 	case ASN_STRING_VisibleString:
+	case ASN_STRING_ISO646String:
 		return &range_VisibleString;
 	case ASN_STRING_IA5String:
 		return &range_uint7;
