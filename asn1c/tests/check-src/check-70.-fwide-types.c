@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
-#include <unistd.h>	/* for chdir(2) */
+#include <unistd.h>	/* for chdir(2), getcwd(3) */
 #include <string.h>
 #include <ctype.h>
 #include <dirent.h>
@@ -16,6 +16,14 @@
 #include <errno.h>
 
 #include <PDU.h>
+
+#ifndef SRCDIR
+#define SRCDIR_S ".."
+#else
+#define STRINGIFY_MACRO2(x) #x
+#define STRINGIFY_MACRO(x)  STRINGIFY_MACRO2(x)
+#define SRCDIR_S    STRINGIFY_MACRO(SRCDIR)
+#endif
 
 enum expectation {
 	EXP_OK,		/* Encoding/decoding must succeed */
@@ -117,16 +125,18 @@ load_object_from(enum expectation expectation, unsigned char *fbuf, size_t size,
 		st = 0;
 
 		do {
-			fprintf(stderr, "Decoding bytes %d..%d (left %d)\n",
+			ASN_DEBUG("Decoding bytes %d..%d (left %d)",
 				fbuf_offset,
 					fbuf_chunk < fbuf_left
 						? fbuf_chunk : fbuf_left,
 					fbuf_left);
+#ifdef  EMIT_ASN_DEBUG
 			if(st) {
 				fprintf(stderr, "=== currently ===\n");
 				asn_fprint(stderr, &asn_DEF_PDU, st);
 				fprintf(stderr, "=== end ===\n");
 			}
+#endif
 			rval = zer_decode(0, &asn_DEF_PDU, (void **)&st,
 				fbuf + fbuf_offset,
 					fbuf_chunk < fbuf_left 
@@ -250,6 +260,7 @@ process_XER_data(enum expectation expectation, unsigned char *fbuf, size_t size)
  */
 static int
 process(const char *fname) {
+	char prevdir[256];
 	unsigned char fbuf[4096];
 	char *ext = strrchr(fname, '.');
 	enum expectation expectation;
@@ -275,10 +286,11 @@ process(const char *fname) {
 
 	fprintf(stderr, "\nProcessing file [../%s]\n", fname);
 
-	ret = chdir("../data-70");
+	getcwd(prevdir, sizeof(prevdir));
+	ret = chdir(SRCDIR_S "/data-70");
 	assert(ret == 0);
 	fp = fopen(fname, "r");
-	ret = chdir("../test-check-70.-fwide-types");
+	ret = chdir(prevdir);
 	assert(ret == 0);
 	assert(fp);
 
@@ -306,7 +318,7 @@ main() {
 		return 0;
 	}
 
-	dir = opendir("../data-70");
+	dir = opendir(SRCDIR_S "/data-70");
 	assert(dir);
 
 	/*

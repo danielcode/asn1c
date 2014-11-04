@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
 
-#define	EMIT_ASN_DEBUG	1
 #include <INTEGER.h>
 #include <INTEGER.c>
 #include <per_support.c>
@@ -24,8 +23,8 @@ static void
 check_per_encode_constrained(int lineno, int unsigned_, long value, long lbound, unsigned long ubound, int bit_range) {
 	INTEGER_t st;
 	INTEGER_t *reconstructed_st = 0;
-	asn_INTEGER_specifics_t specs;
-	asn_per_constraints_t cts;
+	struct asn_INTEGER_specifics_s specs;
+	struct asn_per_constraints_s cts;
 	asn_enc_rval_t enc_rval;
 	asn_dec_rval_t dec_rval;
 	asn_per_outp_t po;

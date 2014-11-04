@@ -5,7 +5,6 @@ AM_CPPFLAGS =				\
 
 noinst_LTLIBRARIES = libasn1fix.la
 
-libasn1fix_la_LDFLAGS = -all-static
 libasn1fix_la_SOURCES =					\
 	asn1fix.c asn1fix.h				\
 	asn1fix_internal.h				\
@@ -33,6 +32,7 @@ check_PROGRAMS = check_fixer
 
 check_fixer_LDADD = $(noinst_LTLIBRARIES)		\
 	$(top_builddir)/libasn1parser/libasn1parser.la
+check_fixer_CPPFLAGS = -DTOP_SRCDIR=${top_srcdir} $(AM_CPPFLAGS)
 check_fixer_DEPENDENCIES = $(check_fixer_LDADD)
 
 TESTS_ENVIRONMENT= ./check_fixer

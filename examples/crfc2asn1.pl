@@ -9,9 +9,9 @@ my $found = 0;
 my $currentFname = '';
 
 if(-t STDIN && $#ARGV == -1) {
-	print STDERR "Extract ASN.1 specification from the RFC file\n";
-	print STDERR "Usage: $0 <rfc-file.txt> ...\n";
-	print STDERR "Usage: <someprog> | $0\n";
+	print STDERR "Extract the ASN.1 specification from the RFC file(s).\n";
+	print STDERR "Usage 1: $0 <rfc-file.txt> ...\n";
+	print STDERR "Usage 2: <someprog> | $0\n";
 	exit(1);
 }
 
@@ -36,7 +36,7 @@ while(<>) {
 
 		my $modName = '';	# ASN.1 module name
 		my $rfcid = '';
-		$rfcid = $1 . '-' if($ARGV =~ /([a-z0-9]+)/i);
+		$rfcid = $1 . '-' if($ARGV =~ /([a-z0-9]+)\.[^.]+$/i);
 
 		if(/^[ \t]*([A-Z][A-Za-z0-9-]*).*DEFINITIONS.*::=/) {
 			$modName = $1;
@@ -44,14 +44,15 @@ while(<>) {
 			$inasn = 1;
 		} elsif(/^[ \t]*([A-Z][A-Za-z0-9-]*).*{[ \t]*iso/
 		|| /^[ \t]*{[ \t]*iso/) {
+			my @a = ($_);
 			$modName = $1;
 			unless(length($modName)) {
 				next unless $prevLine =~
 					/^[ \t]*([A-Z][A-Za-z0-9-]*)[ \t]*$/;
 				$modName = $1;
+				unshift(@a, $prevLine);
 			}
 			$currentFname = $rfcid . $modName . ".asn1";
-			my @a = ($_);
 			my $i;
 			for($i = 0; $i < 8; $i++) {
 				$_ = <>;
@@ -100,10 +101,10 @@ while(<>) {
 	}
 
 	#
-	# The following clauses are primarily designed to make
-	# asn1c command-line easier (i.e., to avoid "-ftypes88").
+	# The following clauses are primarily designed to simplify
+	# asn1c tool behavior.
 	# You may want to get rid of them if you're doing generic
-	# ASN.1 extraction and do not want to alter the ASN.1 specs.
+	# ASN.1 extraction and do not want to alter the ASN.1 specs at all.
 	#
 	if(
 /^([ \t]*)((UniversalString|BMPString|UTF8String)\s+::=\s+\[[A-Z]+\s\d+\]\sIMPLICIT\sOCTET\sSTRING)(.*)$/ms
@@ -113,7 +114,7 @@ while(<>) {
 		next;
 	} elsif(/delete following line if \"new\" types are supported/) {
 		print;
-		print "/* Legacy stuff deleted by $0:\n";
+		print "/* Legacy constructs deleted by $0:\n";
 		$_ = <>;
 		print;
 		print " */\n";

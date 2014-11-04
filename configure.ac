@@ -1,7 +1,11 @@
-AC_INIT([asn1c], [0.9.24], [vlm@lionet.info])
-AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+AC_INIT([asn1c], [0.9.28], [vlm@lionet.info])
+
+AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_HEADER([config.h])
+AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 AC_CONFIG_MACRO_DIR([m4])
+
+AM_MAINTAINER_MODE
 
 AM_PROG_LIBTOOL
 
@@ -14,6 +18,9 @@ AC_PROG_MAKE_SET
 AC_PROG_YACC
 AM_PROG_LEX
 AC_PATH_PROG(AR, ar, ar, $PATH:/usr/ucb:/usr/ccs/bin)	dnl for Solaris
+
+dnl If you need to see the details, just run make V=1.
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 case "$host_os" in
 cygwin)
@@ -31,25 +38,35 @@ if test x$enable_werror = xyes; then
   TESTSUITE_CFLAGS="-Werror -W -Wpointer-arith"
   ADD_CFLAGS="-Werror -W -Wpointer-arith"
 fi
-AC_SUBST(ADD_CFLAGS)
-AC_SUBST(TESTSUITE_CFLAGS)
+
+AC_ARG_ENABLE([ASN_DEBUG],
+  [  --enable-ASN_DEBUG      produce debug log during `make check` testing],
+	enable_asn_debug=$enableval, enable_asn_debug=no)
+if test x$enable_asn_debug = xyes; then
+  TESTSUITE_CFLAGS="-DEMIT_ASN_DEBUG"
+fi
 
 AX_CHECK_COMPILE_FLAG([-Wall], [CFLAGS="$CFLAGS -Wall"])
 AX_CHECK_COMPILE_FLAG([-Wcast-qual], [CFLAGS="$CFLAGS -Wcast-qual"])
 AX_CHECK_COMPILE_FLAG([-Wchar-subscripts],
-                      [CFLAGS="$CFLAGS -Wchar-subscripts"])
+      [CFLAGS="$CFLAGS -Wchar-subscripts"])
 AX_CHECK_COMPILE_FLAG([-Wmissing-prototypes],
-                      [CFLAGS="$CFLAGS -Wmissing-prototypes"])
+      [CFLAGS="$CFLAGS -Wmissing-prototypes"])
 AX_CHECK_COMPILE_FLAG([-Wmissing-declarations],
-                      [CFLAGS="$CFLAGS -Wmissing-declarations"])
+      [CFLAGS="$CFLAGS -Wmissing-declarations"])
 
 dnl There are legitimate uses for these features, disable warnings/errors.
 AX_CHECK_COMPILE_FLAG([-Wno-error=cast-align],
-                      [CFLAGS="$CFLAGS -Wno-error=cast-align"])
+      [CFLAGS="$CFLAGS -Wno-error=cast-align"])
 AX_CHECK_COMPILE_FLAG([-Wno-error=visibility],
-                      [CFLAGS="$CFLAGS -Wno-error=visibility"])
+      [CFLAGS="$CFLAGS -Wno-error=visibility"])
 AX_CHECK_COMPILE_FLAG([-Wno-error=parentheses-equality],
-                      [CFLAGS="$CFLAGS -Wno-error=parentheses-equality"])
+      [CFLAGS="$CFLAGS -Wno-error=parentheses-equality"])
+AX_CHECK_COMPILE_FLAG([-Wno-error=unused-variable],
+      [TESTSUITE_CFLAGS="$TESTSUITE_CFLAGS -Wno-error=unused-variable"])
+
+AC_SUBST(ADD_CFLAGS)
+AC_SUBST(TESTSUITE_CFLAGS)
 
 dnl Checks for header files.
 AC_HEADER_STDC
@@ -79,9 +96,11 @@ AC_SEARCH_LIBS(getopt, iberty)
 AC_CHECK_FUNCS(strtoimax strtoll)
 AC_CHECK_FUNCS(mergesort)
 AC_CHECK_FUNCS(mkstemps)
+AC_CHECK_FUNCS(timegm)
+AC_CHECK_DECLS(alloca strcasecmp)
+AC_TRY_LINK_FUNC([symlink],[AC_DEFINE([HAVE_SYMLINK], 1, [Define to 1 if you have the symlink function.])])
 
 AC_OUTPUT(				\
-skeletons/standard-modules/Makefile	\
 skeletons/tests/Makefile		\
 libasn1compiler/Makefile		\
 libasn1parser/Makefile			\
@@ -91,7 +110,6 @@ libasn1fix/Makefile			\
 doc/docsrc/Makefile			\
 skeletons/Makefile			\
 examples/Makefile			\
-tests/Makefile				\
 asn1c/Makefile				\
 doc/Makefile				\
 asn1c.spec				\
